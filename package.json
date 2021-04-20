@@ -2,18 +2,16 @@
   "name": "ember-component-css-module-colocation-migrator",
   "version": "0.1.0",
   "scripts": {
-    "lint": "eslint --cache .",
-    "test": "codemod-cli test",
-    "test:coverage": "codemod-cli test --coverage",
-    "update-docs": "codemod-cli update-docs",
-    "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls"
+    "lint": "eslint --cache ."
   },
   "bin": "./bin/cli.js",
   "keywords": [
-    "codemod-cli"
+    "codemod"
   ],
   "dependencies": {
-    "codemod-cli": "^3.1.2"
+    "css-tree": "^1.1.3",
+    "glob": "^7.1.6",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "coveralls": "^3.1.0",

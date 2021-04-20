@@ -1,43 +1,66 @@
 # ember-component-css-module-colocation-migrator
 
+This codemod will co-locate CSS Modules for components alongside their JS and HBS counterparts.
 
-A collection of codemods for ember-component-css-module-colocation-migrator.
+The [ember-component-template-colocation-migrator](https://github.com/ember-codemods/ember-component-template-colocation-migrator) takes care of moving `.hbs` files to colocate them with their `.js` backing classes. For any Ember apps using the [ember-css-modules](https://github.com/salsify/ember-css-modules) addon, this leaves their application in a broken state: where `.js` and `.hbs` files are colocated, but their `.css` files are still stuck in `app/styles/components`. This codemod completes the job.
 
 ## Usage
 
-To run a specific codemod from this project, you would run the following:
+To run the migrator on your app:
 
+```sh
+cd your/project/path
+npx github:phorest/ember-component-css-module-colocation-migrator --module-prefix=my-ember-app
 ```
-npx ember-component-css-module-colocation-migrator <TRANSFORM NAME> path/of/files/ or/some**/*glob.js
 
-# or
-
-yarn global add ember-component-css-module-colocation-migrator
-ember-component-css-module-colocation-migrator <TRANSFORM NAME> path/of/files/ or/some**/*glob.js
-```
+To find out what value to specify for `--module-prefix`, consult the `config/environment.js` file in your Ember app.
 
 ## Local Usage
+
 ```
-node ./bin/cli.js <TRANSFORM NAME> path/of/files/ or/some**/*glob.js
+node ./bin/ember-component-css-module-colocation-migrator.js --project-root=/your/project/path --module-prefix=my-ember-app
 ```
 
-## Transforms
+### Flat component structure
 
-<!--TRANSFORMS_START-->
-<!--TRANSFORMS_END-->
+By default, the migrator changes the **classic** component structure to the **flat** component structure.
 
-## Contributing
+```
+your-project-name
+├── app
+│   └── components
+│       ├── foo-bar
+│       │   ├── baz.css
+│       │   ├── baz.hbs
+│       │   └── baz.js
+│       ├── foo-bar.css
+│       ├── foo-bar.hbs
+│       └── foo-bar.js
+│   ...
+```
 
-### Installation
+### Nested component structure
 
-* clone the repo
-* change into the repo directory
-* `yarn`
+If you want to change from **classic** to **nested**, you can specify the `--structure` option:
 
-### Running tests
+```sh
+cd your/project/path
+npx github:phorest/ember-component-css-module-colocation-migrator --structure=nested
+```
 
-* `yarn test`
+The nested component structure looks like:
 
-### Update Documentation
-
-* `yarn update-docs`
+```
+your-project-name
+├── app
+│   └── components
+│       └── foo-bar
+│           ├── baz
+│           │   ├── index.css
+│           │   ├── index.hbs
+│           │   └── index.js
+│           ├── index.css
+│           ├── index.hbs
+│           └── index.js
+│   ...
+```

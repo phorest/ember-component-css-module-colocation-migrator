@@ -1,0 +1,5 @@
+.field {
+  --gutter: 20px;
+  max-width: calc(50% - (var(--gutter) / 2));
+  width: 100%;
+}

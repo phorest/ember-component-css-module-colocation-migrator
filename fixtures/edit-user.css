@@ -1,0 +1,9 @@
+.user {
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.user-field {
+  composes: field from './edit';
+  margin-top: 2em;
+}
