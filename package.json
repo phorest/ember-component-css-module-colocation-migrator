@@ -4,7 +4,7 @@
   "scripts": {
     "lint": "eslint --cache ."
   },
-  "bin": "./bin/cli.js",
+  "bin": "./bin/ember-component-css-module-colocation-migrator.js",
   "keywords": [
     "codemod"
   ],
